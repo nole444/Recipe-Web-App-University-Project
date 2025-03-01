@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <div style="text-align: center;">
+        <h1>Recipes</h1>
+    </div>
+    {% for recipe in recipes %}
+        <div>
+            <h2><a href="{{ url_for('recipe', recipe_id=recipe.id) }}">{{ recipe.title }}</a></h2>
+            <div style="text-align: right; font-size: 10px;">
+                <p>Created by: {{ recipe.user.username }}</p>
+                <p>Posted: {{ recipe.date_posted.strftime('%B %d, %Y') }}</p>
+            </div>
+            <p>{{ recipe.content[:100] }}...</p>
+            {% if current_user.is_authenticated and (current_user == recipe.user or current_user.has_permission('admin')) %}
+                <a href="{{ url_for('update_recipe', recipe_id=recipe.id) }}">Edit this Recipe</a>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% endblock %}

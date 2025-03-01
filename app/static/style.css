@@ -1,0 +1,48 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('images/background.jpg'); /* Path to the background image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background-color: rgba(255, 255, 255, 0.9); /* adds slight transparency to the container */
+    padding: 20px; /* Adds padding to make content inside the container more readable */
+    border-radius: 8px; /* Optional: rounds the corners of the container */
+}
+
+.alert {
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+form div {
+    margin-bottom: 15px;
+}

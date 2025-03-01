@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    {% if recipe %}
+        <div style="text-align: center;">
+            <h1>{{ recipe.title }}</h1>
+        </div>
+        <pre style="font-family: Arial, sans-serif;">{{ recipe.content }}</pre>
+        {% if current_user.is_authenticated and (current_user == recipe.user or current_user.has_permission('admin')) %}
+            <form action="{{ url_for('delete_recipe', recipe_id=recipe.id) }}" method="post">
+                <button type="submit" class="btn btn-danger">Delete Recipe</button>
+            </form>
+        {% endif %}
+    {% else %}
+        <div style="text-align: center;">
+            <h1>New Recipe</h1>
+        </div>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div>
+                {{ form.title.label }}
+                {{ form.title(size=32) }}
+            </div>
+            <div>
+                {{ form.content.label }}
+                {{ form.content(rows=10) }}
+            </div>
+            <div>
+                {{ form.submit() }}
+            </div>
+        </form>
+    {% endif %}
+{% endblock %}
